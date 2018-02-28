@@ -21,6 +21,14 @@ describe "#my_all?" do
     my_all?(collection) do |number|
       yielded.push number
     end
-    expect(yielded).to eq([])
+    expect(yielded).to eq([1,2,3])
+  end
+
+  it "returns false when the block condition is not met" do
+    expect(my_all?(collection) {|i| i < 3}).to eq(false)
+  end
+
+  it "returns true when the block condition is met" do
+    expect(my_all?(collection) {|i| i < 4}).to eq(true)
   end
 end
